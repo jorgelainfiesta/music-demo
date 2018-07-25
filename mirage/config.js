@@ -26,4 +26,6 @@ export default function() {
   */
  this.namespace = 'api';
  this.get('/entries');
+ this.get('/genres');
+ this.get('/genres/:id');
 }
