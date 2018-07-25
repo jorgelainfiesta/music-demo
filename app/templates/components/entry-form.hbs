@@ -1,0 +1,52 @@
+{{yield}}
+
+<form>
+  <h2>
+    Add new entry
+  </h2>
+  <div class="row">
+    <div class="col">
+      {{input-value
+        label='Entry name'
+        key='name'
+        onUpdate=(action 'updateData' 'name')
+        data=entryData
+      }}
+      {{input-value
+        label='Artist'
+        key='artistName'
+        onUpdate=(action 'updateData' 'artistName')
+        data=entryData
+      }}
+      {{input-value
+        label='Spotify link'
+        key='spotifyLink'
+        onUpdate=(action 'updateData' 'spotifyLink')
+        data=entryData
+      }}
+    </div>
+    <div class="col">
+      {{input-value
+        label='Album Name'
+        key='albumName'
+        onUpdate=(action 'updateData' 'albumName')
+        data=_entryData
+      }}
+      {{input-value
+        label='Album Cover URL'
+        key='albumCoverUrl'
+        onUpdate=(action 'updateData' 'albumCoverUrl')
+        data=_entryData
+      }}
+      {{input-value
+        label='Year of release'
+        key='yearOfRelease'
+        onUpdate=(action 'updateData' 'yearOfRelease')
+        data=_entryData
+      }}
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success" {{action onSubmit entryData}}>Add entry</button>
+  <button class="btn btn-light" {{action onCancel}}>Cancel</button>
+  
+</form>

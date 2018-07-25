@@ -3,5 +3,18 @@
   {{entries-table table=table}}
 </main>
 <aside class='add-entry'>
-  <h2>Add entry</h2>
+  {{#if addingEntry}}
+    {{entry-form
+      onCancel=(action (mut addingEntry) false)
+      onSubmit=(perform createEntry)
+    }}
+  {{else}}
+    <button
+      type="button"
+      class="btn btn-primary"
+      {{action (mut addingEntry) true}}
+    >
+      Add Entry
+    </button>
+  {{/if}}
 </aside>

@@ -1,12 +1,9 @@
 import Route from '@ember/routing/route';
 import Table from 'ember-light-table';
-import { setProperties } from '@ember/object';
+import { setProperties, get, set } from '@ember/object';
+import { task } from 'ember-concurrency';
 
 export default Route.extend({
-  model() {
-    return this.store.findAll('entry');
-  },
-
   columns: [{
     label: 'Name',
     valuePath: 'name'
@@ -25,12 +22,29 @@ export default Route.extend({
     width: '150px'
   }],
 
+  model() {
+    return this.store.findAll('entry');
+  },
+
   setupController(controller, model) {
     let table = new Table(this.get('columns'), model.toArray(), { enableSync: false });
+    let createEntry = get(this, 'createEntry');
 
     setProperties(controller, {
+      createEntry,
       table,
       model
     });
-  }
+  },
+
+  createEntry: task(function*(entryData) {
+    let newEntry = this.store.createRecord('entry', entryData);
+    
+    yield newEntry.save();
+
+    let table = get(this, 'controller.table');
+    table.addRow(newEntry);
+
+    set(this, 'controller.addingEntry', false);
+  })
 });
