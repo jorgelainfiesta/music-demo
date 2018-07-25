@@ -18,15 +18,10 @@ export default Route.extend({
     label: '',
     valuePath: 'albumCoverUrl',
     cellComponent: 'album-cover',
-    width: '50px'
+    width: '60px'
   }, {
     label: 'Album',
     valuePath: 'albumName',
-    width: '150px'
-  }, {
-    label: 'Genre(s)',
-    valuePath: 'genres',
-    cellComponent: 'genre-list',
     width: '150px'
   }],
 

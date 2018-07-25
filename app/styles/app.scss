@@ -1,1 +1,10 @@
-@import "./components/album-cover";
+@import 'bootstrap';
+@import './components/album-cover';
+
+.entries {
+  padding: 1rem;
+}
+
+.add-entry {
+  padding: 1rem;
+}
